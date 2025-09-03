@@ -11,6 +11,10 @@
 # Arquivos de coverage
 *.out
 
+# CLI build artifacts
+cmd/gitinfo-cli/gitinfo-cli
+example/gitinfo-example
+
 # Diretórios de dependências
 vendor/
 

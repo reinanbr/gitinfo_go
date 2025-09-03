@@ -1,4 +1,4 @@
-.PHONY: test build clean fmt vet example help
+.PHONY: test build clean fmt vet example help build-cli test-cli install-cli
 
 # Default target
 help: ## Show this help message
@@ -14,6 +14,18 @@ test-coverage: ## Run tests with coverage
 build: ## Build the example
 	cd example && go build -o gitinfo-example main.go
 
+build-cli: ## Build the CLI tool
+	cd cmd/gitinfo-cli && go build -o gitinfo-cli main.go
+
+install-cli: build-cli ## Install CLI tool to system PATH
+	sudo cp cmd/gitinfo-cli/gitinfo-cli /usr/local/bin/
+
+test-cli: build-cli ## Run CLI tests
+	./test-cli.sh
+
+test-ci: ## Simulate CI workflow locally
+	./test-ci.sh
+
 run: ## Run the example
 	cd example && go run main.go
 
@@ -28,6 +40,7 @@ lint: ## Run golint (requires golint to be installed)
 
 clean: ## Clean build artifacts
 	cd example && rm -f gitinfo-example
+	cd cmd/gitinfo-cli && rm -f gitinfo-cli
 
 check: fmt vet test ## Run all checks (format, vet, test)
 

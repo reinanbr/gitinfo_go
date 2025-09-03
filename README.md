@@ -16,11 +16,24 @@ A Go library for retrieving Git repository information.
 - Support for custom repository paths
 - Comprehensive error handling
 - Full test coverage
+- **Command-line interface (CLI) included**
 
 ## Installation
 
+### Library
 ```bash
 go get github.com/reinanbr/gitinfo_go
+```
+
+### CLI Tool
+```bash
+# Clone and build
+git clone https://github.com/reinanbr/gitinfo_go.git
+cd gitinfo_go
+make build-cli
+
+# Or install to system PATH
+make install-cli
 ```
 
 ## Quick Start
@@ -154,6 +167,25 @@ make vet           # Run go vet
 make check         # Run all checks
 make run           # Run example
 ```
+
+## CLI Tool
+
+The package includes a command-line interface for quick Git information retrieval:
+
+```bash
+# Basic usage
+gitinfo-cli
+
+# JSON output
+gitinfo-cli -json
+
+# Specific information
+gitinfo-cli -hash    # Show only commit hash
+gitinfo-cli -branch  # Show only branch name
+gitinfo-cli -dirty   # Check if working tree is dirty
+```
+
+See [CLI.md](CLI.md) for complete CLI documentation.
 
 ## Contributing
 
